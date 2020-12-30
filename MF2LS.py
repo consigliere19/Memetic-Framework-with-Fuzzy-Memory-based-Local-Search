@@ -83,7 +83,7 @@ def initialize(popSize, dim):
 
 
 ####################################################################################################
-# Roulette selection of parents for crossover
+# Roulette wheel selection of parents for crossover
 
 
 def selectParentRoulette(popSize, fitnList):
@@ -142,8 +142,6 @@ def geneticAlgo(dataset, popSize, maxIter, randomstate):
     GBESTSOL = population[fitindex[0]].copy()
     GBESTFIT = fitList[fitindex[0]]
 
-    start_time = datetime.now()
-
     feature_score = np.zeros((dimension))
 
     for currIter in range(maxIter):
@@ -172,7 +170,7 @@ def geneticAlgo(dataset, popSize, maxIter, randomstate):
             parent2 = population[parent2].copy()
 
             ####################################################################################################
-            # crossover between parent1 and parent2
+            # Crossover between parent1 and parent2
 
             child1 = parent1.copy()
             child2 = parent2.copy()
@@ -187,7 +185,7 @@ def geneticAlgo(dataset, popSize, maxIter, randomstate):
             newpop[j] = child2.copy()
 
         ####################################################################################################
-        # mutation
+        # Mutation
 
         mutationprob = muprobmin + (muprobmax - muprobmin) * (currIter / maxIter)
         for index in range(popSize):
